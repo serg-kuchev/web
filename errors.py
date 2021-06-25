@@ -1,7 +1,7 @@
 from flask import jsonify
 from flask import request
 
-from app import app
+from app import aplication
 
 
 class BasicException(Exception):
@@ -37,8 +37,8 @@ class BadRequest(BasicException):
     default_message = 'BAD_REQUEST'
 
 
-@app.errorhandler(BadRequest)
-@app.errorhandler(NotFound)
+@aplication.errorhandler(BadRequest)
+@aplication.errorhandler(NotFound)
 def handle_invalid_usage(error):
     response = jsonify(error.to_dict())
     response.status_code = error.status_code

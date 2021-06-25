@@ -1,18 +1,16 @@
 from flask_restful import Api
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask
-from resources import UserLogin, UserRegistration, UserLogoutAccess, UserLogoutRefresh
 
 import config
 
 
-app = Flask(__name__)
-app.config.from_mapping(config.CONFIG)
-db = SQLAlchemy(app)
+aplication = Flask(__name__)
+aplication.config.from_mapping(config.CONFIG)
+db = SQLAlchemy(aplication)
 
-api = Api(app)
+api = Api(aplication)
 
-api.add_resource(UserRegistration, '/registration')
-api.add_resource(UserLogin, '/login')
-api.add_resource(UserLogoutAccess, '/logout/access')
-api.add_resource(UserLogoutRefresh, '/logout/refresh')
+
+if __name__ == '__main__':
+    aplication.run(port=8082, debug=True)
