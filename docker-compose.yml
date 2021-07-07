@@ -1,0 +1,19 @@
+version: "3"
+services:
+  db:
+    image: postgres:11.4-alpine
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./pg_data:/var/lib/postgresql/data/pgdata
+    environment:
+      POSTGRES_PASSWORD: Looklaks13570
+      POSTGRES_DB: flask_db
+      PGDATA: /var/lib/postgresql/data/pgdata
+    restart: always
+  flask:
+    build: ./web
+    command: python ./app.py
+    ports:
+      - "8082:8082"
