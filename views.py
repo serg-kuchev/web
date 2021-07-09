@@ -1,7 +1,7 @@
 from flask import request, jsonify
 from flask.views import MethodView
 
-from app import app
+from app import aplication
 from validator import validate
 from models import User, Ad
 from schema import USER_CREATE, ADVERTISEMENT_CREATE
@@ -42,11 +42,11 @@ class AdvertisementView(MethodView):
         return jsonify({'message': 'NO_CONTENT'})
 
 
-app.add_url_rule('/users/<int:user_id>', view_func=UserView.as_view('users_get'), methods=['GET', ])
-app.add_url_rule('/users/', view_func=UserView.as_view('users_create'), methods=['POST', ])
-app.add_url_rule('/users/<int:user_id>', view_func=UserView.as_view('users_delete'), methods=['DELETE', ])
-app.add_url_rule('/advertisements/<int:advertisement_id>', view_func=AdvertisementView.as_view('advertisements_get'),
+aplication.add_url_rule('/users/<int:user_id>', view_func=UserView.as_view('users_get'), methods=['GET', ])
+aplication.add_url_rule('/users/', view_func=UserView.as_view('users_create'), methods=['POST', ])
+aplication.add_url_rule('/users/<int:user_id>', view_func=UserView.as_view('users_delete'), methods=['DELETE', ])
+aplication.add_url_rule('/advertisements/<int:advertisement_id>', view_func=AdvertisementView.as_view('advertisements_get'),
                  methods=['GET', ])
-app.add_url_rule('/advertisements/', view_func=AdvertisementView.as_view('advertisements_create'), methods=['POST', ])
-app.add_url_rule('/advertisements/<int:advertisement_id>', view_func=AdvertisementView.as_view('advertisements_delete'),
+aplication.add_url_rule('/advertisements/', view_func=AdvertisementView.as_view('advertisements_create'), methods=['POST', ])
+aplication.add_url_rule('/advertisements/<int:advertisement_id>', view_func=AdvertisementView.as_view('advertisements_delete'),
                  methods=['DELETE', ])
